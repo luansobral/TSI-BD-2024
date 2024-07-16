@@ -12,9 +12,9 @@ CREATE TABLE CLIENTE(
     id INT PRIMARY KEY AUTO_INCREMENT, 
     nome VARCHAR(45) NOT NULL, 
     email VARCHAR(55) NOT NULL,
-    FOREIGN KEY (id) REFERENCES CIDADE (id),
+    CONSTRAINT fk_cliente_cidade FOREIGN KEY (id_cidade) REFERENCES CIDADE (id),
     endereco VARCHAR(45),
     bairro VARCHAR(45),
     numero INT,
-    data_nasc DATE
+    data_nasc DATE,
     );
