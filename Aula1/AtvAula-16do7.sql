@@ -17,3 +17,8 @@ CREATE TABLE pessoa(
     PRIMARY KEY (codigo),
     FOREIGN KEY (codigo_postal) REFERENCES caixa_postal (codigo_postal)
 );
+
+CREATE TABLE telefone(
+    codigo INTEGER not null,
+    tel_residencial VARCHAR(15),
+);
