@@ -15,10 +15,12 @@ CREATE TABLE FORNECEDOR(
 
 CREATE TABLE PRODUTO(
     cod_produto INTEGER NOT NULL AUTO_INCREMENT,
+    cod_fornecedor INTEGER NOT NULL,
     nome VARCHAR(40) NOT NULL,
-    CONSTRAINT fk_fornec_produto FOREIGN KEY(cod_fornec) REFERENCES CIDADE(cod_fornec),
     preco_unitario NUMERIC(10,2),
     qtde INTEGER,
+    PRIMARY KEY(cod_produto),
+    CONSTRAINT fk_fornecedor FOREIGN KEY(cod_fornecedor) REFERENCES FORNECEDOR(cod_fornec)
 );
 
 -- INSERINDO VALORES NAS TABELAS
@@ -34,32 +36,32 @@ VALUES (952, 'Rango Quente', 1327790, 'Rua Aclimação', 'Birigui', 'SP');
 INSERT INTO FORNECEDOR(cod_fornec, nome, fone, endereco, cidade, estado) 
 VALUES (111, 'Quentinhas', 5644234, 'Rua Teste', 'Belo Horizonte', 'MG');
 
-INSERT INTO PRODUTO(nome, cod_fornec, preco_unitario, qtde) 
+INSERT INTO PRODUTO(nome, cod_fornecedor, preco_unitario, qtde) 
 VALUES ('arroz', 344, 20, 55);
 
-INSERT INTO PRODUTO(nome, cod_fornec, preco_unitario, qtde) 
+INSERT INTO PRODUTO(nome, cod_fornecedor, preco_unitario, qtde) 
 VALUES ('feijão', 78, 16.5, 60);
 
-INSERT INTO PRODUTO(nome, cod_fornec, preco_unitario, qtde) 
+INSERT INTO PRODUTO(nome, cod_fornecedor, preco_unitario, qtde) 
 VALUES ('macarrão', 78, 5, 15);
 
-INSERT INTO PRODUTO(nome, cod_fornec, preco_unitario, qtde) 
+INSERT INTO PRODUTO(nome, cod_fornecedor, preco_unitario, qtde) 
 VALUES ('leite', 344, 3.5, 20);
 
-INSERT INTO PRODUTO(nome, cod_fornec, preco_unitario, qtde) 
+INSERT INTO PRODUTO(nome, cod_fornecedor, preco_unitario, qtde) 
 VALUES ('farinha', 952, 5, 8);
 
 -- FAZENDO AS ALTERAÇÕES
 UPDATE FORNECEDOR SET nome = 'Foods' WHERE nome = 'Comidas';
 
-ALTER TABLE FORNECEDOR ADD e-mail VARCHAR(30);
+ALTER TABLE FORNECEDOR ADD email VARCHAR(30);
 
-INSERT INTO FORNECEDOR(e-mail) VALUES ('alimentosdobem@alimentos.com') WHERE cod_fornec = 344;
-INSERT INTO FORNECEDOR(e-mail) VALUES ('quentinhas@email.com') WHERE cod_fornec = 111;
+UPDATE FORNECEDOR SET email = 'aabbcc@gmail.com' WHERE cod_fornec = 344;
+UPDATE FORNECEDOR SET email = 'ddeeff@gmail.com' WHERE cod_fornec = 111;
 
-ALTER TABLE FORNECEDOR DROP endereco VARCHAR(40);
+ALTER TABLE FORNECEDOR DROP endereco;
 
-INSERT INTO PRODUTO(qtde) VALUES (15) WHERE nome = 'arroz';
+UPDATE PRODUTO SET qtde = 15 WHERE nome = 'arroz';
 
 -- FAZENDO AS CONSULTAS
 SELECT * FROM FORNECEDOR;
